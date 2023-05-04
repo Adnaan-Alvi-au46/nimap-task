@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MongoUrl = 'mongodb+srv://Adnaanalvi:808045@cluster0.vszagcg.mongodb.net/test'    
+// const MongoUrl = database connection url have been removed before uploading 
 
 
 

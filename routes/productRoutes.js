@@ -70,33 +70,3 @@ productrouter.post('/postProduct/:id', async (req, res) => {
   });
 
 module.exports = productrouter;
-
-
-
-
-// // Get all products
-// productrouter.get('/', async (req, res) => {
-//   const pageSize = 10;
-//   const page = parseInt(req.query.page) || 1;
-//   const skip = (page - 1) * pageSize;
-//   const products = await Product.find().skip(skip).limit(pageSize).populate('category');
-//   const totalProducts = await Product.countDocuments();
-//   const totalPages = Math.ceil(totalProducts / pageSize);
-//   res.render('products/index', { products, totalPages, currentPage: page });
-// });
-
-// // Show the create product form
-// productrouter.get('/new', async (req, res) => {
-//   const categories = await Category.find();
-//   // res.render('products/new', { categories });
-//   res.send({msg:'success'});
-// });
-
-// // Create a new product
-// productrouter.post('/', async (req, res) => {
-//   const product = new Product({
-//     name: req.body.name,
-//     category: req.body.category
-//   });
-// })
-// module.exports = productrouter;
