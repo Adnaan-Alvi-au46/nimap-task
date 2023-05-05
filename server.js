@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const connectDB = require('./dbConfig');
+// const connectDB = require('./dbConfig');
 const productrouter = require('./routes/productRoutes');
 const categoryrouter = require('./routes/categoryRoutes');
 
@@ -17,7 +17,7 @@ app.listen(prt,(error)=>{
 
 if(!error){
     console.log('server started sucessfull at 3000')
-    connectDB()
+    // connectDB()
 }
 else{
     console.log(error)
