@@ -4,12 +4,24 @@ const pool = require('../dbConfig')
 
 // Get all products
 
-productrouter.get('/products', async (req, res) => {
+productrouter.get('/allproducts/:pg', async (req, res) => {
   try {
-    const allData = await pool.query(`SELECT * FROM product WHERE deleted='false' `);
+    const {pg} = req.params
+    const page = parseInt(pg)
+    if(page===1){
+     console.log(page)
+    const allData = await pool.query(`SELECT * FROM product WHERE deleted='false' ORDER BY product_id LIMIT 10  OFFSET 0 `) ;
     console.log(allData.rows)
     res.json(allData.rows)
-   
+   }
+   else{
+    console.log(page)
+    const X = (page*10)-10
+    console.log(X)
+    const allData = await pool.query(`SELECT * FROM product WHERE deleted='false' ORDER BY product_id LIMIT 9  OFFSET $1 `, [X]);
+    console.log(allData.rows)
+    res.json(allData.rows)
+  }
 } catch (error) {
     res.status(404).send({status:'error', msg:'Error fetching product from DB', error})
 }

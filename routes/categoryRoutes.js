@@ -21,8 +21,14 @@ categoryrouter.get('/productbycategory/:id', async (req, res) => {
     const {id}=req.params
     console.log(id)
     const allData = await pool.query(`SELECT * FROM product WHERE category_id=$1 AND deleted='false'`,[id]);
-    console.log(allData.rows)
-    res.json(allData.rows)
+    const categoryData = await pool.query(`SELECT category_name FROM category WHERE category_id=$1 AND deleted='false'`,[id])
+    allData.rows.map((x) => {
+      x.category_name = categoryData.rows[0].category_name;
+    });
+
+    console.log(allData.rows);
+    console.log(categoryData.rows);
+    res.json(allData.rows);
      
   } catch (error) {
       res.status(404).send({status:'error', msg:'Error fetching categories from DB',error})
